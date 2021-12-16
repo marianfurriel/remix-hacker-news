@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "remix";
-import classnames from "classnames";
+import cn from "classnames";
 
 import { getUrlParams } from "~/utils/pager";
 
@@ -30,7 +30,7 @@ function Pager(props: IProps) {
     }  
   };
 
-  const prevClassName = classnames("hover:cursor-pointer hover:text-gray-800", {
+  const prevClassName = cn("hover:cursor-pointer hover:text-gray-800", {
     "hover:cursor-default text-gray-300 hover:text-gray-300": urlParams.page === 0,
   });
 

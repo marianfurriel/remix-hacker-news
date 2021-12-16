@@ -4,28 +4,11 @@ import { LoaderFunction, useLoaderData, LinksFunction } from "remix";
 import Api from "~/api";
 import { extractHost } from "~/utils/url";
 import { formatDate } from "~/utils/date";
+import { count } from "~/utils/tree";
 
 import styles from "~/styles/item.css";
 
 import type { IComment } from "~/typings";
-
-export function countComments(item: IComment) {
-  let count = 0;
-
-  const traverse = (arr: any) => {
-    for (let c of arr) {
-      count += 1;
-      const children = c.children;
-      if (children?.length > 0) {
-        traverse(children);
-      }
-    }
-  };
-
-  traverse(item.children);
-
-  return count;
-};
 
 export let links: LinksFunction = () => {
   return [
@@ -42,7 +25,7 @@ export let loader: LoaderFunction = async ({ request }) => {
     }
     const itemId = parseInt(queryParam);
     const item = await Api.getItem(itemId);
-    const totalComments = countComments(item);
+    const totalComments = count(item.children, 'children');
     item.totalComments = totalComments;
 
     return { item };
@@ -76,7 +59,7 @@ export default function ItemRoute() {
     const isCollapsed = collapsed.includes(comment.id);
 
     if (isCollapsed) {
-      const commentsCount = countComments(comment) + 1;
+      const commentsCount = count(comment.children, 'children') + 1;
 
       return (
         <div

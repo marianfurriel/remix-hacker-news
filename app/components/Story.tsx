@@ -3,29 +3,12 @@ import { Link } from "remix";
 
 import { extractHost } from "~/utils/url";
 import { formatDate } from "~/utils/date";
+import { count } from "~/utils/tree";
 
-import { IStory, IComment } from "~/typings";
-
-export function countComments(children?: IComment) {
-  let count = 0;
-
-  const traverse = (arr: any) => {
-    for (let c of arr) {
-      count += 1;
-      const children = c.children;
-      if (children?.length > 0) {
-        traverse(children);
-      }
-    }
-  };
-
-  if (children) traverse(children);
-
-  return count;
-}
+import { IStory } from "~/typings";
 
 interface IProps extends IStory {
-  showScore?: boolean,
+  showScore?: boolean;
 }
 
 function Story(props: IProps) {
@@ -40,7 +23,7 @@ function Story(props: IProps) {
     title,
     url,
     showScore,
-    children,
+    children = [],
   } = props;
   const host = extractHost(url);
   const timestamp = created_at_i || time;
@@ -50,7 +33,7 @@ function Story(props: IProps) {
     setShowDescription((v) => !v);
   };
 
-  const commentsCount = countComments(children);
+  const commentsCount = count(children, "children");
 
   return (
     <div

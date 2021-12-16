@@ -10,7 +10,7 @@ export interface IStory {
   author: string,
   id: number,
   descendants?: number,
-  children?: IComment,
+  children?: IComment[],
   kids?: number[],
   score?: number,
   time?: number,

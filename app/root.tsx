@@ -6,14 +6,12 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
   useCatch,
   useLocation,
-  useNavigate,
 } from "remix";
 import type { LinksFunction } from "remix";
 
-import { Pager, Switch } from "~/components";
+import { Switch } from "~/components";
 
 import styles from "~/styles/tailwind.css";
 
@@ -21,8 +19,6 @@ export let links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
 };
 
-// https://remix.run/api/conventions#default-export
-// https://remix.run/api/conventions#route-filenames
 export default function App() {
   return (
     <Document>
@@ -33,7 +29,6 @@ export default function App() {
   );
 }
 
-// https://remix.run/docs/en/v1/api/conventions#errorboundary
 export function ErrorBoundary({ error }: { error: Error }) {
   console.error(error);
   return (
@@ -53,7 +48,6 @@ export function ErrorBoundary({ error }: { error: Error }) {
   );
 }
 
-// https://remix.run/docs/en/v1/api/conventions#catchboundary
 export function CatchBoundary() {
   let caught = useCatch();
 
@@ -132,40 +126,29 @@ function Layout({ children }: { children: React.ReactNode }) {
     }
   }, [location.pathname, location.search]);
 
+  const linkClassName = "transition duration-300 text-sm text-gray-300 hover:text-white";
+
   return (
     <div className="w-full h-screen flex flex-col">
-      <header>
-        <div className="bg-indigo-600 h-12 flex items-center justify-center space-x-4 sm:space-x-8">
-          <Link
-            className="transition duration-300 text-sm text-gray-300 hover:text-white"
-            to="/"
-          >
+      <header className="bg-indigo-600 h-12 flex items-center justify-center flex-column">
+        <div className="ml-auto space-x-4 sm:space-x-8">
+          <Link className={linkClassName} to="/">
             HN
           </Link>
-          <Link
-            className="transition duration-300 text-sm text-gray-300 hover:text-white"
-            to="/news"
-          >
+          <Link className={linkClassName} to="/news">
             New
           </Link>
-          <Link
-            className="transition duration-300 text-sm text-gray-300 hover:text-white"
-            to="/show"
-          >
+          <Link className={linkClassName} to="/show">
             Show
           </Link>
-          <Link
-            className="transition duration-300 text-sm text-gray-300 hover:text-white"
-            to="/ask"
-          >
+          <Link className={linkClassName} to="/ask">
             Ask
           </Link>
-          <Link
-            className="transition duration-300 text-sm text-gray-300 hover:text-white"
-            to="/jobs"
-          >
+          <Link className={linkClassName} to="/jobs">
             Jobs
           </Link>
+        </div>
+        <div className="p-2 ml-auto">
           <Switch />
         </div>
       </header>
