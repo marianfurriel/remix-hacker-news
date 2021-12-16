@@ -1,0 +1,8 @@
+.items-container a {
+    text-decoration: underline;
+    color: darkblue;
+}
+
+html[class*="dark"] .items-container a {
+    color: lightblue;
+}
