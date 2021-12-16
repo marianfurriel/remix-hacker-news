@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { client } from './httpClient';
+import { client } from '../httpClient';
 
 describe('HttpClient tests', () => {
   beforeEach(() => {

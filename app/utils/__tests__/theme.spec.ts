@@ -1,9 +1,9 @@
-import storage from './storage';
-import { ThemeMode } from './constants';
+import storage from '../storage';
+import { ThemeMode } from '../constants';
 
-import { toggleMode } from './theme';
+import { toggleMode } from '../theme';
 
-jest.mock('./storage', () => ({
+jest.mock('../storage', () => ({
   set: jest.fn(),
   get: jest.fn(),
 }));

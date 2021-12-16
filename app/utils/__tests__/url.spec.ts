@@ -1,4 +1,4 @@
-import { extractHost } from "./url";
+import { extractHost } from "../url";
 
 describe("Url tests", () => {
   it("should extract host domain from url", () => {

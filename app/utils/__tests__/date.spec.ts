@@ -1,4 +1,4 @@
-import { formatDate } from "./date";
+import { formatDate } from "../date";
 
 describe("Date formatting tests", () => {
   it("should format timestamp date", () => {

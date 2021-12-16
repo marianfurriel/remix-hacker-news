@@ -1,5 +1,5 @@
-import storage from "./storage";
-import { ThemeMode } from './constants';
+import storage from "../storage";
+import { ThemeMode } from '../constants';
 
 describe("Storage tests", () => {
   beforeEach(() => {

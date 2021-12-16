@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "remix";
 import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-import Pager from "./Pager";
+import Pager from "../Pager";
 
 jest.mock("remix", () => ({
   useNavigate: jest.fn(),

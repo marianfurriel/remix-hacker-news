@@ -1,4 +1,4 @@
-import { count } from "./tree";
+import { count } from "../tree";
 
 describe("Tree tests", () => {
   it("should count tree list", () => {
